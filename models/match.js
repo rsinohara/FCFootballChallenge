@@ -19,7 +19,13 @@ function Match(matchDate){
 
     Match.prototype.setResult=function(scoreTeam0,scoreTeam1){
         this.played=true;
-        this.result=scoreTeam0 > scoreTeam1? 0 : 1;
+        if(scoreTeam0 > scoreTeam1){
+            this.result = 0;
+        } else if(scoreTeam1 > scoreTeam0){
+            this.result = 1;
+        } else {
+            this.result = -1;
+        }
         this.scores[0]=scoreTeam0;
         this.scores[1]=scoreTeam1;
     };
@@ -32,6 +38,19 @@ function Match(matchDate){
         if(!this.teams[0].isComplete() || !this.teams[0].isComplete()){
             throw(new Error('Cannot play with incomplete teams'));
         }
+
+        var score0=0;
+        var score1=0;
+        for(var i=1;i<=11;i++){
+            var skillTeam0=this.teams[0].getPlayer(i).skillLevel;
+            var skillTeam1=this.teams[1].getPlayer(i).skillLevel;
+            if(skillTeam0 > skillTeam1 ){
+                score0++;
+            } else if(skillTeam1 > skillTeam0){
+                score1++;
+            }
+        }
+        this.setResult(score0,score1);
     };
 
     Match.prototype.addTeam=function(newTeam){
@@ -59,7 +78,11 @@ function Match(matchDate){
 
         var resultText='';
         if(this.played){
-            resultText=', ' + this.teams[this.result].name + ' won ';
+            if(this.result==-1){
+                resultText=', it was a draw ';
+            } else {
+                resultText=', ' + this.teams[this.result].name + ' won ';
+            }
             var winnerScore=Math.max(this.scores[0],this.scores[1]);
             var looserScore=Math.min(this.scores[0],this.scores[1])
             resultText+='(' + winnerScore + ' to ' + looserScore + ')';

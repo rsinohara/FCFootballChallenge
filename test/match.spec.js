@@ -32,12 +32,15 @@ describe('Match',function(){
         it('sets correct team as winner',function(){
             var match1=new Match(date);
             var match2=new Match(date);
+            var match3=new Match(date);
             
             match1.setResult(3,4);
             match2.setResult(7,0);
+            match3.setResult(2,2);
 
             expect(match1.result).to.equal(1);
-            expect(match2.result).to.equal(0);           
+            expect(match2.result).to.equal(0);
+            expect(match3.result).to.equal(-1);            
         });
 
         it('sets match.played to true',function(){
@@ -91,11 +94,96 @@ describe('Match',function(){
             expect(call).to.throw();
         });
 
-        it('give correct results',function(){
+        it('with winning team, give correct results',function(){
             var team1=new Team('team 1');
             var team2=new Team('team 2');
 
-            team1.addCoach(new Coach('coach 1'))
+            team1.addCoach(new Coach('coach 1'));
+            team2.addCoach(new Coach('coach 2'));
+
+            //Doing it the hard way to avoid having logic in the tests.
+            //
+            team1.players=[
+                new Player('p1.1',1,10),
+                new Player('p1.2',2,10),
+                new Player('p1.3',3,10),
+                new Player('p1.4',4,10),
+                new Player('p1.5',5,10),
+                new Player('p1.6',6,10),
+                new Player('p1.7',7,10),
+                new Player('p1.8',8,10),
+                new Player('p1.9',9,10),
+                new Player('p1.10',10,10),
+                new Player('p1.11',11,10)];
+            
+            team2.players=[
+                new Player('p2.1',1,10),
+                new Player('p2.2',2,10),
+                new Player('p2.3',3,10),
+                new Player('p2.4',4,10),
+                new Player('p2.5',5,10),
+                new Player('p2.6',6,9),
+                new Player('p2.7',7,10),
+                new Player('p2.8',8,10),
+                new Player('p2.9',9,10),
+                new Player('p2.10',10,10),
+                new Player('p2.11',11,10),]
+
+            match.addTeam(team1);
+            match.addTeam(team2);
+
+            match.play();
+
+            expect(match.result).to.equal(0);
+            expect(match.scores[0]).to.equal(1);
+            expect(match.scores[1]).to.equal(0);
+            
+        });
+
+        it('with equal teams, give correct results',function(){
+            var team1=new Team('team 1');
+            var team2=new Team('team 2');
+
+            team1.addCoach(new Coach('coach 1'));
+            team2.addCoach(new Coach('coach 2'));
+
+            //Doing it the hard way to avoid having logic in the tests.
+            //
+            team1.players=[
+                new Player('p1.1',1,10),
+                new Player('p1.2',2,10),
+                new Player('p1.3',3,10),
+                new Player('p1.4',4,10),
+                new Player('p1.5',5,10),
+                new Player('p1.6',6,10),
+                new Player('p1.7',7,10),
+                new Player('p1.8',8,10),
+                new Player('p1.9',9,10),
+                new Player('p1.10',10,10),
+                new Player('p1.11',11,10)];
+            
+            team2.players=[
+                new Player('p2.1',1,10),
+                new Player('p2.2',2,10),
+                new Player('p2.3',3,10),
+                new Player('p2.4',4,10),
+                new Player('p2.5',5,10),
+                new Player('p2.6',6,10),
+                new Player('p2.7',7,10),
+                new Player('p2.8',8,10),
+                new Player('p2.9',9,10),
+                new Player('p2.10',10,10),
+                new Player('p2.11',11,10),]
+
+            match.addTeam(team1);
+            match.addTeam(team2);
+
+            match.play();
+
+            expect(match.result).to.equal(-1);
+            expect(match.scores[0]).to.equal(0);
+            expect(match.scores[1]).to.equal(0);
+            
         });
     });
 
@@ -116,11 +204,18 @@ describe('Match',function(){
             expect(match.toString()).to.equal('Match: ' + date.toDateString() + ', team 1 vs team 2.');
         });
 
-        it(',with two teams and results in, returns correct string',function(){
+        it(',with two teams and there was a winner, returns correct string',function(){
             match.teams.push(new Team('team 1'));
             match.teams.push(new Team('team 2'));
             match.setResult(7,1);
             expect(match.toString()).to.equal('Match: ' + date.toDateString() + ', team 1 vs team 2, team 1 won (7 to 1).');
+        });
+
+        it(',with two teams and game was a draw, returns correct string',function(){
+            match.teams.push(new Team('team 1'));
+            match.teams.push(new Team('team 2'));
+            match.setResult(5,5);
+            expect(match.toString()).to.equal('Match: ' + date.toDateString() + ', team 1 vs team 2, it was a draw (5 to 5).');
         });
 
     });
