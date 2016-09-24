@@ -8,7 +8,7 @@ function Player(newName,newNumber,newSkill) {
 
     //Randomize skill if it's not provided or invalid
     if(!(newSkill>=1 && newSkill<=10)){
-      this.skillLevel=Math.floor(Math.random()*10);
+      this.skillLevel=Math.floor(Math.random()*10)+1;
     }
 
     //Throw if number is not provided or invalid
