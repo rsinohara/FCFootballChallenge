@@ -47,18 +47,24 @@ function Team(newName){
       {
           return false;
       }
-      if(this.players.length!=11){
+      if(this.players.length<11){
           return false;
       }
 
       //Also check that players are valid
-      for(var i=0;i<11;i++){
+      for(var i=0;i<this.players.length;i++){
           if(!(this.players[i] instanceof Player)){
               return false;
           }
       }
 
       return true;
+  };
+
+  Team.prototype.getPlayer=function(position){
+      if(position>this.players.length){
+          throw(new Error('There are not enough players on the team.'));
+      }
   };
 
   Team.prototype.addCoach=function(coach){

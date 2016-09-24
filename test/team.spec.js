@@ -72,6 +72,16 @@ describe("Team",function(){
             expect(team.isComplete()).to.equal(true);
         });
 
+
+        it('returns false if coach is invalid',function(){
+            team.coach='not a coach';
+            for(var i=0;i<11;i++){
+                team.players.push(new Player('p'+(i+1),i+1));
+            }
+
+            expect(team.isComplete()).to.equal(false);
+        });
+
         it('returns true if team has extra players',function(){
             team.coach=new Coach('coach-name');
             for(var i=0;i<30;i++){
@@ -79,6 +89,17 @@ describe("Team",function(){
             }
             
             expect(team.isComplete()).to.equal(true);
+        });
+
+        it('returns false if invalid player is present',function(){
+            team.coach=new Coach('coach-name');
+            for(var i=0;i<30;i++){
+                team.players.push(new Player('p'+(i+1),i+1));
+            }
+
+            team.players.push('not a player');
+            
+            expect(team.isComplete()).to.equal(false);
         });
 
     });
