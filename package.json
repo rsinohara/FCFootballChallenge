@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "test"
+    "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,9 @@
   "bugs": {
     "url": "https://github.com/rsinohara/FCFootballChallenge/issues"
   },
-  "homepage": "https://github.com/rsinohara/FCFootballChallenge#readme"
+  "homepage": "https://github.com/rsinohara/FCFootballChallenge#readme",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
+  }
 }
