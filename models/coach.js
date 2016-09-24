@@ -1,7 +1,7 @@
 var BaseModel = require('./person.js'),
     util = require('util');
 
-function Coach(newName,newNumber,newSkill) {
+function Coach(newName) {
     BaseModel.apply(this, [newName]);
 
     Coach.prototype.toString=function(){
