@@ -104,7 +104,7 @@ describe("Team",function(){
 
     });
 
-    describe("add coach",function(){
+    describe('add coach',function(){
 
         it('adds coach',function(){
             team.addCoach(new Coach('coach-name'));
@@ -116,6 +116,27 @@ describe("Team",function(){
             var call=function() { team.addCoach('not a coach'); };
 
             expect(call).to.throw();
+        });
+    });
+
+    describe('getPlayer()',function(){
+
+        it('throws if there are not enough players',function(){
+            var call=function() { team.getPlayer(2); };
+            expect(call).to.throw();
+        });
+
+        it('returns correct players',function(){
+            team.addPlayer(new Player('best player',1,10));
+            team.addPlayer(new Player('not best',2,1));
+            team.addPlayer(new Player('not best',3,7));
+            team.addPlayer(new Player('not best',4,8));
+
+            expect(team.getPlayer(1).number).to.equal(1);
+            expect(team.getPlayer(2).number).to.equal(4);
+            expect(team.getPlayer(3).number).to.equal(3);
+            expect(team.getPlayer(4).number).to.equal(2);
+
         });
     });
 

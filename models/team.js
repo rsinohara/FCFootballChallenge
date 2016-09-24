@@ -62,9 +62,15 @@ function Team(newName){
   };
 
   Team.prototype.getPlayer=function(position){
-      if(position>this.players.length){
+      if(position > this.players.length){
           throw(new Error('There are not enough players on the team.'));
       }
+
+      //Sort players array in decreasing order
+      this.players.sort(function(a,b){ return b.skillLevel-a.skillLevel; });
+
+      //Position is 1 based, while player array is 0 based
+      return this.players[position-1];
   };
 
   Team.prototype.addCoach=function(coach){
