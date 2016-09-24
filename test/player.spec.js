@@ -28,11 +28,13 @@ describe("Player",function(){
     })
 
     it("throws if invalid number is provided",function(){
-      var call1= function() { var t=new Player('name',12); };
-      var call2= function() { var t=new Player('name',0); };
+      var call1= function() { var t=new Player('name',-5); };
+      var call2= function() { var t=new Player('name','not a number'); };
+      var call3= function() { var t=new Player('name',0); };
 
       expect(call1).to.throw(/Invalid player number/);
       expect(call2).to.throw(/Invalid player number/);
+      expect(call3).to.throw(/Invalid player number/);
     })
 
     it("random skill level is (probably) always in the right range",function(){

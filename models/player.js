@@ -12,7 +12,7 @@ function Player(newName,newNumber,newSkill) {
     }
 
     //Throw if number is not provided or invalid
-    if(!(newNumber>=1 && newNumber<=11)){
+    if(!(newNumber>=1)){
       throw(new Error('Invalid player number: ' + newNumber));
     }
 
