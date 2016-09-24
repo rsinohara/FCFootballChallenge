@@ -36,6 +36,13 @@ describe("Player",function(){
       expect(call2).to.throw(/Invalid player number/);
     })
 
+    it("random skill level is (probably) always in the right range",function(){
+      for(var i=0;i<=10000;i++){
+        var player=new Player('random player',1);
+        expect(player.skillLevel).to.within(1,10);
+      }
+    });
+
   });
 
 
