@@ -9,11 +9,4 @@ describe("Person",function(){
     var person=new Person('name');
     expect(person.toString()).to.equal('name');
   });
-
-  it("Two people have different names",function(){
-    var p1=new Person('name1');
-    var p2=new Person('name2');
-
-    expect(p1.toString()).to.not.equal(p2.toString());
-  });
 });
