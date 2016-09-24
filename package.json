@@ -1,0 +1,25 @@
+{
+  "name": "fc-football-challenge",
+  "version": "1.0.0",
+  "description": "Football simulation game challenge for Fashion Cloud",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rsinohara/FCFootballChallenge.git"
+  },
+  "keywords": [
+    "football",
+    "simulation",
+    "coding-challenge"
+  ],
+  "author": "Renato Sinohara - rsinohara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rsinohara/FCFootballChallenge/issues"
+  },
+  "homepage": "https://github.com/rsinohara/FCFootballChallenge#readme"
+}
