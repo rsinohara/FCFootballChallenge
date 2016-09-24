@@ -9,21 +9,21 @@ beforeEach(function(){
     team=new Team('team-name');
 });
 
-describe("Team",function(){
+describe('Team',function(){
 
-    describe("to string",function(){
+    describe('to string',function(){
 
-        it(", with no coach and no players, outputs correct string",function(){
+        it(', with no coach and no players, outputs correct string',function(){
             expect(team.toString()).to.equal('Team: team-name' + ', no coach, no players');
         });
     
-        it(", a coach but no players, outputs correct string",function(){
+        it(', a coach but no players, outputs correct string',function(){
             team.coach=new Coach('coach-name');
             expect(team.toString()).to.equal('Team: team-name' + ', Coach: coach-name, no players');
         });
 
         //No specific reason for 3 players
-        it(", 3 players but no coach , outputs correct string",function(){
+        it(', 3 players but no coach , outputs correct string',function(){
             team.players.push(new Player('p1',1));
             team.players.push(new Player('p2',2));
             team.players.push(new Player('p3',3));
@@ -31,7 +31,7 @@ describe("Team",function(){
             expect(team.toString()).to.equal('Team: team-name' + ', no coach, Players: p1, p2, p3');
         });
 
-        it(", 3 players and a coach , outputs correct string",function(){
+        it(', 3 players and a coach , outputs correct string',function(){
             team.coach=new Coach('coach-name');
             team.players.push(new Player('p1',1));
             team.players.push(new Player('p2',2));
@@ -41,7 +41,7 @@ describe("Team",function(){
         });
     });
 
-    describe("add player",function(){
+    describe('add player',function(){
 
         it('adds player to list',function(){
             team.addPlayer(new Player('p1',1));

@@ -20,7 +20,7 @@ function Team(newName){
       if(!isPlayersAnArray || this.players.length==0){
           playersText='no players';
       } else {
-          playersText="Players: ";
+          playersText='Players: ';
           for(var i=0;i<this.players.length;i++){
               playersText+= i==0?'':', ';
               playersText+=this.players[i].name;
