@@ -21,9 +21,6 @@ function Player(newName,newNumber,newSkill) {
     }
 }
 
-
-
 util.inherits(Player, BaseModel);
-
 
 module.exports = Player;

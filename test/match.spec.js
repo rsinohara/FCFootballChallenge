@@ -24,7 +24,6 @@ describe('Match',function(){
             var call=function() { new Match('not a date'); };
             expect(call).to.throw();
         });
-
     });
 
     describe('set result', function(){
@@ -136,8 +135,7 @@ describe('Match',function(){
 
             expect(match.result).to.equal(0);
             expect(match.scores[0]).to.equal(1);
-            expect(match.scores[1]).to.equal(0);
-            
+            expect(match.scores[1]).to.equal(0);        
         });
 
         it('with equal teams, give correct results',function(){
@@ -148,7 +146,6 @@ describe('Match',function(){
             team2.addCoach(new Coach('coach 2'));
 
             //Doing it the hard way to avoid having logic in the tests.
-            //
             team1.players=[
                 new Player('p1.1',1,10),
                 new Player('p1.2',2,10),
@@ -182,8 +179,7 @@ describe('Match',function(){
 
             expect(match.result).to.equal(-1);
             expect(match.scores[0]).to.equal(0);
-            expect(match.scores[1]).to.equal(0);
-            
+            expect(match.scores[1]).to.equal(0);           
         });
     });
 
@@ -217,6 +213,5 @@ describe('Match',function(){
             match.setResult(5,5);
             expect(match.toString()).to.equal('Match: ' + date.toDateString() + ', team 1 vs team 2, it was a draw (5 to 5).');
         });
-
     });
 });

@@ -1,5 +1,3 @@
-
-
 function Person(newName){
   this.name=newName;
 

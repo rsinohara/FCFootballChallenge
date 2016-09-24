@@ -26,7 +26,7 @@ function Team(newName){
               playersText+=this.players[i].name;
           }
       }
-
+      
       return 'Team: ' + this.name + ', ' + coachText + ', ' + playersText;
   };
 

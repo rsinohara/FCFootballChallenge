@@ -72,7 +72,6 @@ describe("Team",function(){
             expect(team.isComplete()).to.equal(true);
         });
 
-
         it('returns false if coach is invalid',function(){
             team.coach='not a coach';
             for(var i=0;i<11;i++){
@@ -139,6 +138,5 @@ describe("Team",function(){
 
         });
     });
-
 });
 
